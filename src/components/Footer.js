@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import {
-    NavLink,
-    withRouter
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Logo from "../images/plant.svg"
 
 class Footer extends Component {
@@ -12,11 +9,11 @@ class Footer extends Component {
 			<div className="footer">
 				<div className="ui inverted vertical footer segment">
 					<div className="ui center aligned container">
-						<img src={Logo} className="ui centered mini image"></img>
+						<img src={Logo} className="ui centered mini image" alt="small plant"/>
 						<div className="ui horizontal inverted small divided link list">
-							<a className="item" href="#">Contact Us</a>
-							<a className="item" href="#">Terms and Conditions</a>
-							<a className="item" href="#">Privacy Policy</a>
+							<p className="item" >Contact Us</p>
+							<p className="item" >Terms and Conditions</p>
+							<p className="item" >Privacy Policy</p>
 						</div>
 					</div>
 				</div>

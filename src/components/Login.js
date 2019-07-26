@@ -19,7 +19,7 @@ class Login extends Component {
         this.password = React.createRef()
 
         if (this.getToken()) {
-            // TODO: if already logged in, redirect away from login page
+          
         }
     }
 
@@ -48,7 +48,7 @@ class Login extends Component {
                 alert("Please Enter In Username and password")
             } else {
                 this.props.history.push('/')
-            } 
+            }
         })
     }
 
@@ -74,13 +74,13 @@ class Login extends Component {
                 <br></br>
                 <div className="ui centered grid container">
                     <div className="nine wide column">
-                        <div className="ui warning message"> 
+                        <div className="ui warning message">
                             <div className="content">
 	                            <div className="header">Plant Pals</div>
                                 <p>Please Login to find a new plant pal!</p>
                             </div>
                         </div>
-                        
+
                         <div className="content">
                             <form className="ui form" method="POST">
                                 <div className="field">
@@ -96,7 +96,7 @@ class Login extends Component {
                                 </button>
                             </form>
                             <div className="ui error message">
-                                <center>New User?  Sign up <a><NavLink to="/signup">Here!</NavLink></a></center>
+                                <center>New User?  Sign up <NavLink to="/signup">Here!</NavLink></center>
                             </div>
                         </div>
                     </div>

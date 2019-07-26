@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { API_ROOT } from '../constants';
 import Room from '../components/Room'
 import { Card } from 'semantic-ui-react'
 
