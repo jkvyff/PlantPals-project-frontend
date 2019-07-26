@@ -6,6 +6,10 @@ import Logo from "../images/plant.svg"
 
 class Profile extends Component {
 
+	componentDidMount() {
+		
+	}
+
 	render() {
 		const {username, plant_care_rating, avatar} = this.props.user
 		return (
@@ -19,7 +23,7 @@ class Profile extends Component {
 							<Rating maxRating={5} rating={plant_care_rating} icon='star' size='huge' />
 						</Card.Description>
 					</Card.Content>
-
+					
 				</Card>
 			</div>
 		)
