@@ -21,11 +21,11 @@ class NavBar extends Component {
         return (
             <div>
                 <div id="header" >
-                    <img src={dahlia} className="ui fluid image" />
+                    <img src={dahlia} className="ui fluid image" alt="flowers in a field" />
                 </div>
                 <div className="ui borderless main menu">
                     <div className="ui text container">
-                      <div className="item"><img className="svg" src={Logo}/></div>
+                      <div className="item"><img className="svg" src={Logo} alt="small plant"/></div>
                       <div className="item"><strong>Plant Pals</strong></div>
                       <div className="item"><NavLink to="/">My Plants</NavLink></div>
                       <div className="ui right floated item"><strong>{this.props.user ? "Hello " + this.props.user.username : null}</strong></div>
@@ -34,7 +34,7 @@ class NavBar extends Component {
                     </div>
                 </div>
             </div>
-           
+
         )
     }
 }
