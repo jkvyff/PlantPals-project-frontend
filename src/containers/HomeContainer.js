@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Profile from "../components/Profile"
+import FormRoom from "../components/FormRoom"
 import FormPlant from "../components/FormPlant"
 import RoomContainer from "../containers/RoomContainer"
 import PlantContainer from "../containers/PlantContainer"
@@ -21,8 +22,12 @@ class HomeContainer extends Component {
 		}
 	}
 
-	handleClick = room => {
-		this.setState({selected: room})
+	handleClickProfile = () => {
+		this.setState({selected: ""})
+	}
+
+	handleClick = card => {
+		this.setState({selected: card})
 	}
 
 	render() {
@@ -31,7 +36,7 @@ class HomeContainer extends Component {
 				<div className="ui middle divided aligned stackable grid container">
 					<div className="row">
 						<div className="four wide column">
-							<Profile user={this.props.user} />
+							<Profile user={this.props.user} handleClick={this.handleClickProfile} />
 						</div>
 						<div className="twelve wide column">
 							<PlantContainer room={this.state.selected} handleClick={this.handleClick} />
@@ -41,6 +46,11 @@ class HomeContainer extends Component {
 						<RoomContainer rooms={this.props.user.rooms} handleClick={this.handleClick} />
 					</div>
 					{this.state.selected &&
+						this.state.selected === "NEW" ?
+						<div className="row">
+							<FormRoom selected={this.state.selected} getToken={this.props.getToken}/>
+						</div>
+						:
 						<div className="row">
 							<FormPlant selected={this.state.selected} getToken={this.props.getToken}/>
 						</div>

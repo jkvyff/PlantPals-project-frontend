@@ -4,6 +4,10 @@ import { Card } from 'semantic-ui-react'
 
 class RoomContainer extends Component {
 
+	handleClick = ev => {
+		this.props.handleClick("NEW")
+	}
+
 	render() {
 		return (
 			<div>
@@ -12,6 +16,14 @@ class RoomContainer extends Component {
 					{this.props.rooms && this.props.rooms.map(room => {
 						return <Room key={room.id} room={room} handleClick={this.props.handleClick} />
 					})}
+					<Card color="green" className="new" onClick={this.handleClick}>
+						<Card.Content ><br /><br /><br /><br />
+							<Card.Header>
+								Click Me<br />
+								to add a new Room
+							</Card.Header>
+						</Card.Content>
+					</Card>
 				</Card.Group>
 			</div>
 		)

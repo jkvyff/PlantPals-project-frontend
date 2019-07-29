@@ -10,7 +10,7 @@ class Profile extends Component {
 		const {username, plant_care_rating, avatar} = this.props.user
 		return (
 			<div>
-				<Card color='orange'>
+				<Card color='orange' onClick={this.props.handleClick}>
 					<Image src={avatar ? API_BASE+avatar.url : Logo } wrapped ui={false} rounded />
 					<Card.Content>
 						<Card.Header><i className="icon user circle" />{username}</Card.Header>
