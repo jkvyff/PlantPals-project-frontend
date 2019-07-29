@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Search } from 'semantic-ui-react'
 import Profile from "../components/Profile"
 import FormRoom from "../components/FormRoom"
 import FormPlant from "../components/FormPlant"
@@ -10,7 +11,9 @@ class HomeContainer extends Component {
 
 	state = {
 		user: {},
-		selected: ""
+		selected: "",
+		searchTerm: "",
+		results: []
 	}
 
 	componentDidMount() {
@@ -30,6 +33,10 @@ class HomeContainer extends Component {
 		this.setState({selected: card})
 	}
 
+	handleSearchChange = ev => {
+		this.setState({searchTerm: ev.target.value})
+	}
+
 	render() {
 		return (
 			<div className="HomeContainer"><br /><br />
@@ -45,7 +52,7 @@ class HomeContainer extends Component {
 					<div className="row">
 						<RoomContainer rooms={this.props.user.rooms} handleClick={this.handleClick} />
 					</div>
-					{this.state.selected &&
+					{this.state.selected && (
 						this.state.selected === "NEW" ?
 						<div className="row">
 							<FormRoom selected={this.state.selected} getToken={this.props.getToken}/>
@@ -53,8 +60,14 @@ class HomeContainer extends Component {
 						:
 						<div className="row">
 							<FormPlant selected={this.state.selected} getToken={this.props.getToken}/>
+							<Search
+        				onResultSelect={this.handleResultSelect}
+		            onSearchChange={this.handleSearchChange}
+		            results={this.state.results}
+		            value={this.state.searchTerm}
+		          />
 						</div>
-					}
+					)}
 				</div>
 			</div>
 		);

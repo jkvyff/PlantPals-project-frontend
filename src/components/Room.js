@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button, Icon } from 'semantic-ui-react'
 
 
 class Room extends Component {
@@ -12,7 +12,10 @@ class Room extends Component {
 		const { humidity, light, name, pet_access, room_plants, temp_F } = this.props.room
 		return (
 			<Card color="green" onClick={this.handleClick}>
-				<Image src="https://www.bhg.com.au/media/18730/06072018-indoor-plants.jpg?width=400&mode=crop&center=0.0,0.0" wrapped ui={false} rounded />
+				<Card.Content>
+					<Button basic className="mini right floated icon" color='red'><Icon name='x'/></Button>
+				</Card.Content>
+				<Image wrapped src="https://www.bhg.com.au/media/18730/06072018-indoor-plants.jpg?width=400&mode=crop&center=0.0,0.0" />
 				<Card.Content>
 					<Card.Header>{name}</Card.Header>
 					<Card.Description>

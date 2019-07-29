@@ -58,7 +58,6 @@ class FormRoom extends Component {
 				<form className="ui equal width form" onSubmit={this.handleSubmit} >
 					<div className="fields">
 						<div className="field">
-
 							<input type="text" name="name" placeholder="Room Name" onChange={this.handleChange} />
 						</div>
             <div className="seven wide ui toggle checkbox field">

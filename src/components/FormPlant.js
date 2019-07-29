@@ -15,8 +15,7 @@ class FormPlant extends Component {
 		lightTol: "",
 		difficulty: "",
 		toxic: true,
-		notes: "",
-		searchTerm: ""
+		notes: ""
 	}
 
 	handleChange = ev => {
