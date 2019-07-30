@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Search } from 'semantic-ui-react'
+import { Search, Item, Menu, Input, Form } from 'semantic-ui-react'
+import { API_PLANT } from '../constants';
 import Profile from "../components/Profile"
 import FormRoom from "../components/FormRoom"
 import FormPlant from "../components/FormPlant"
@@ -33,14 +34,37 @@ class HomeContainer extends Component {
 		this.setState({selected: card})
 	}
 
-	handleSearchChange = ev => {
-		this.setState({searchTerm: ev.target.value})
+	handleSearchChange = (ev, {value}) => {
+		this.setState({searchTerm: value})
+		this.fetchPlants()
+	}
+
+	handleResultSelect = (ev, {result}) => {
+		this.setState({ results: result.common_name })
+	}
+
+	fetchPlants = () => {
+		const token =  this.props.getToken()
+		fetch(API_PLANT+`?q=${this.state.searchTerm}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			  Accept: 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		})
+		.then(res => res.json())
+		.then(plants => {
+			const filtered = plants
+			console.log(filtered)
+			this.setState({results: filtered})
+		})
 	}
 
 	render() {
 		return (
 			<div className="HomeContainer"><br /><br />
-				<div className="ui middle divided aligned stackable grid container">
+				<div className="ui middle aligned stackable grid container">
 					<div className="row">
 						<div className="four wide column">
 							<Profile user={this.props.user} handleClick={this.handleClickProfile} />
@@ -60,12 +84,23 @@ class HomeContainer extends Component {
 						:
 						<div className="row">
 							<FormPlant selected={this.state.selected} getToken={this.props.getToken}/>
-							<Search
-        				onResultSelect={this.handleResultSelect}
-		            onSearchChange={this.handleSearchChange}
-		            results={this.state.results}
-		            value={this.state.searchTerm}
-		          />
+							<div className="two wide column"></div>
+							<div>
+							<h2><b>Search for a plant</b></h2>
+								<Menu vertical>
+									<Menu.Item>
+										<Form.Input fluid icon='search' placeholder='Input Name/Species' value={this.state.searchTerm} onChange={this.handleSearchChange} />
+									</Menu.Item>
+									{this.state.results.map(plant =>
+									<Menu.Item name={plant.common_name} >
+										<Item.Content>
+											<Item.Header>{plant.common_name}</Item.Header>
+											<Item.Meta>{plant.scientific_name}</Item.Meta>
+										</Item.Content>
+									</Menu.Item>
+									)}
+								</Menu>
+							</div>
 						</div>
 					)}
 				</div>
