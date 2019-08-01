@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 class App extends Component {
 
 	state = {
-		user: ""
+		user: ''
 	}
 
 	logout = event => {
@@ -71,7 +71,13 @@ class App extends Component {
 	}
 
 	handleCreateRoom = room => {
-		console.log("hello",room, this.state.user.rooms)
+		this.setState(prevState => ({
+			...prevState,
+			user: {
+				...prevState.user,
+				rooms: [...prevState.user.rooms, room]
+			}
+		}))
 	}
 
 	handleDeleteRoom = room_id => {

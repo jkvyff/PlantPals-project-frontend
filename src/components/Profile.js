@@ -19,7 +19,6 @@ class Profile extends Component {
 							<Rating maxRating={5} rating={plant_care_rating} icon='star' size='huge' />
 						</Card.Description>
 					</Card.Content>
-
 				</Card>
 			</div>
 		)

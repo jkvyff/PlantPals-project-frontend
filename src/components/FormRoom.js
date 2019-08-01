@@ -49,7 +49,7 @@ class FormRoom extends Component {
 			body: payload
 		})
 		.then(res => res.json())
-		.then(json => this.props.handleCreateRoom(json))
+		.then(json => this.props.handleCreateRoom(json.room))
 	}
 
 	render() {

@@ -8,7 +8,7 @@ class PlantContainer extends Component {
 			<div>
 				<h1>Your Plants {this.props.room.name ? "in " + this.props.room.name : null}</h1>
 				{this.props.room ?
-					<Card.Group itemsPerRow={3} height="200px">
+					<Card.Group itemsPerRow={3} >
 						{this.props.room && this.props.room.room_plants && this.props.room.room_plants.map(plant => {
 							return <Plant key={plant.id} plant={plant} />
 						})}
