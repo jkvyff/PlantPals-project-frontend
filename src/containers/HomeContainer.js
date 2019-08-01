@@ -84,7 +84,7 @@ class HomeContainer extends Component {
 				<div className="ui middle aligned stackable grid container">
 					<div className="row">
 						<div className="four wide column">
-							<Profile user={this.props.user} handleClick={this.handleClickProfile} />
+							<Profile user={this.props.user} handleClick={this.handleClickProfile} handleSelfRate={this.props.handleSelfRate} />
 						</div>
 						<div className="twelve wide column">
 							<PlantContainer

@@ -4,7 +4,7 @@ import { Card } from 'semantic-ui-react'
 class Plant extends Component {
 
 	handleClick = () => {
-		console.log("hello i'm ", this.props.plant.nickname)
+		console.log("Hello i'm",this.props.plant.nickname)
 	}
 
 	render() {

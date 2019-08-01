@@ -6,6 +6,10 @@ import Logo from "../images/plant.svg"
 
 class Profile extends Component {
 
+	selfRate = (ev, {rating}) => {
+		this.props.handleSelfRate(rating)
+	}
+
 	render() {
 		const {username, plant_care_rating, avatar} = this.props.user
 		return (
@@ -16,7 +20,7 @@ class Profile extends Component {
 						<Card.Header><i className="icon user circle" />{username}</Card.Header>
 						<Card.Description>
 							Plant Care Rating<br/>
-							<Rating maxRating={5} rating={plant_care_rating} icon='star' size='huge' />
+							<Rating maxRating={5} rating={plant_care_rating} icon='star' size='huge' onRate={this.selfRate}/>
 						</Card.Description>
 					</Card.Content>
 				</Card>

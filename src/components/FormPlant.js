@@ -34,11 +34,6 @@ class FormPlant extends Component {
 				}, () => console.log(this.state.commonName))
 	}
 
-	componentDidUpdate() {
-		console.log(this.props.resultPlant)
-		// this.fillFormFromProps();
-	}
-
 	handleChange = ev => {
 		this.setState({
 			[ev.target.name]: ev.target.value

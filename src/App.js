@@ -19,15 +19,11 @@ class App extends Component {
 		this.setState({ user: '' })
 	}
 
-	clearToken(jwt) {
-		localStorage.setItem('jwt', '')
-	}
+	clearToken(jwt) { localStorage.setItem('jwt', '') }
 
-	getToken() { return localStorage.getItem('jwt')}
+	getToken() { return localStorage.getItem('jwt') }
 
-	saveToken(jwt) {
-		localStorage.setItem('jwt', jwt)
-	}
+	saveToken(jwt) { localStorage.setItem('jwt', jwt) }
 
 	getProfile = () => {
 		let token = this.getToken()
@@ -100,6 +96,22 @@ class App extends Component {
 		.catch(err => console.log(err))
 	}
 
+	handleSelfRate = rating => {
+		const token = this.getToken();
+		fetch(`${API_ROOT}/users/${this.state.user.id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			  Accept: 'application/json',
+				'Authorization': 'Bearer ' + token
+			},
+			body: JSON.stringify( {user: { plant_care_rating: rating }} )
+		})
+		.then(res => res.json())
+		.then(json => this.setState(json))
+		.catch(err => console.log(err))
+	}
+
 	render() {
 		return (
 			<Router>
@@ -110,7 +122,8 @@ class App extends Component {
 							getToken={this.getToken}
 							getProfile={this.getProfile}
 							handleCreateRoom={this.handleCreateRoom}
-							handleDeleteRoom={this.handleDeleteRoom} />}
+							handleDeleteRoom={this.handleDeleteRoom}
+							handleSelfRate={this.handleSelfRate} />}
 					/>
 					<Route exact path="/login" render={ (props) =>
 						<Login {...props}
