@@ -8,12 +8,16 @@ class Room extends Component {
 		this.props.handleClick(this.props.room)
 	}
 
+	handleDelete = () => {
+		this.props.handleDeleteRoom(this.props.room.id)
+	}
+
 	render() {
 		const { humidity, light, name, pet_access, room_plants, temp_F } = this.props.room
 		return (
 			<Card color="green" onClick={this.handleClick}>
 				<Card.Content>
-					<Button basic className="mini right floated icon" color='red'><Icon name='x'/></Button>
+					<Button basic onClick={this.handleDelete} className="mini right floated icon" color='red'><Icon name='x'/></Button>
 				</Card.Content>
 				<Image wrapped src="https://www.bhg.com.au/media/18730/06072018-indoor-plants.jpg?width=400&mode=crop&center=0.0,0.0" />
 				<Card.Content>

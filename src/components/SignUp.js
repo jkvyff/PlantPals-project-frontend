@@ -87,7 +87,7 @@ class SignUp extends Component {
         reader.onloadend = ev => {
             this.setState({
                 avatar: file[0],
-                preview: reader.result 
+                preview: reader.result
             });
         }
     };
@@ -163,7 +163,7 @@ class SignUp extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><br />
             </div>
         )
     }

@@ -26,18 +26,19 @@ class FormRoom extends Component {
 
   handleSubmit = ev => {
 		ev.preventDefault()
-		const { name, user_id, temp_F, light, humidity, pet_access } = this.state
+		const { name, temp_F, light, humidity, pet_access } = this.state
 		const token =  this.props.getToken()
 		const payload = JSON.stringify({
 			room: {
 				name: name,
-        user_id: user_id,
+        user_id: this.props.user_id,
 				temp_F: temp_F,
 				light: light,
 				humidity: humidity,
 				pet_access: pet_access
 			}
 		})
+		console.log(payload)
 		fetch(API_ROOM, {
 			method: 'POST',
 			headers: {
@@ -48,7 +49,7 @@ class FormRoom extends Component {
 			body: payload
 		})
 		.then(res => res.json())
-		.then(json => console.log(json))
+		.then(json => this.props.handleCreateRoom(json))
 	}
 
 	render() {
@@ -61,18 +62,18 @@ class FormRoom extends Component {
 							<input type="text" name="name" placeholder="Room Name" onChange={this.handleChange} />
 						</div>
             <div className="seven wide ui toggle checkbox field">
-              <input type="checkbox" tabIndex="0" checked={this.state.pet_access}  onChange={this.toggleCheckbox}  />
+              <input type="checkbox" tabIndex="0" checked={this.state.pet_access} onChange={this.toggleCheckbox}  />
               <label>Pets have access</label>
             </div>
 					</div>
 					<div className="fields">
 						<div className="field">
 							<label>Temperature °F</label>
-							<input type="text" name="temp" placeholder="Average Temperature" onChange={this.handleChange} />
+							<input type="text" name="temp_F" placeholder="Average Temperature" onChange={this.handleChange} />
 						</div>
 						<div className="field">
 							<label>Humidity %</label>
-							<input type="text" name="humid" placeholder="Average Humidity" onChange={this.handleChange} />
+							<input type="text" name="humidity" placeholder="Average Humidity" onChange={this.handleChange} />
 						</div>
             <div className="field">
 							<label>Light Exposure</label>

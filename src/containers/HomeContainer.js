@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Search, Item, Menu, Input, Form } from 'semantic-ui-react'
+import { Item, Menu, Form } from 'semantic-ui-react'
 import { API_PLANT } from '../constants';
 import Profile from "../components/Profile"
 import FormRoom from "../components/FormRoom"
@@ -11,10 +11,10 @@ import PlantContainer from "../containers/PlantContainer"
 class HomeContainer extends Component {
 
 	state = {
-		user: {},
 		selected: "",
 		searchTerm: "",
-		results: []
+		results: [],
+		plant: ""
 	}
 
 	componentDidMount() {
@@ -35,12 +35,17 @@ class HomeContainer extends Component {
 	}
 
 	handleSearchChange = (ev, {value}) => {
-		this.setState({searchTerm: value})
-		this.fetchPlants()
+		this.setState({searchTerm: value, plant: ""}, () => {
+			this.fetchPlants()
+		})
 	}
 
-	handleResultSelect = (ev, {result}) => {
-		this.setState({ results: result.common_name })
+	handleResultSelect = (ev, {name}) => {
+		this.setState({ plant: name })
+	}
+
+	foundPlant = () => {
+		return this.state.results.find(plant => plant.common_name === this.state.plant)
 	}
 
 	fetchPlants = () => {
@@ -54,11 +59,7 @@ class HomeContainer extends Component {
 			}
 		})
 		.then(res => res.json())
-		.then(plants => {
-			const filtered = plants
-			console.log(filtered)
-			this.setState({results: filtered})
-		})
+		.then(plants => this.setState({results: plants}))
 	}
 
 	render() {
@@ -70,33 +71,50 @@ class HomeContainer extends Component {
 							<Profile user={this.props.user} handleClick={this.handleClickProfile} />
 						</div>
 						<div className="twelve wide column">
-							<PlantContainer room={this.state.selected} handleClick={this.handleClick} />
+							<PlantContainer
+								room={this.state.selected}
+								handleClick={this.handleClick} />
 						</div>
 					</div>
 					<div className="row">
-						<RoomContainer rooms={this.props.user.rooms} handleClick={this.handleClick} />
+						<RoomContainer
+							rooms={this.props.user.rooms}
+							handleClick={this.handleClick}
+							handleDeleteRoom={this.props.handleDeleteRoom}
+							getToken={this.props.getToken} />
 					</div>
 					{this.state.selected && (
 						this.state.selected === "NEW" ?
 						<div className="row">
-							<FormRoom selected={this.state.selected} getToken={this.props.getToken}/>
+							<FormRoom
+								selected={this.state.selected}
+								getToken={this.props.getToken}
+								handleCreateRoom={this.props.handleCreateRoom}
+								user_id={this.props.user.id} />
 						</div>
 						:
 						<div className="row">
-							<FormPlant selected={this.state.selected} getToken={this.props.getToken}/>
+						<FormPlant
+							selected={this.state.selected}
+							resultPlant={this.foundPlant()}
+							getToken={this.props.getToken} />
 							<div className="two wide column"></div>
 							<div>
-							<h2><b>Search for a plant</b></h2>
+								<h2><b>Search for a plant</b></h2>
 								<Menu vertical>
-									<Menu.Item>
-										<Form.Input fluid icon='search' placeholder='Input Name/Species' value={this.state.searchTerm} onChange={this.handleSearchChange} />
-									</Menu.Item>
-									{this.state.results.map(plant =>
-									<Menu.Item name={plant.common_name} >
-										<Item.Content>
+									<Form.Input fluid
+										icon='search'
+										placeholder='Input Name/Species'
+										value={this.state.searchTerm}
+										onChange={this.handleSearchChange} />
+									{this.state.searchTerm && this.state.results.map(plant =>
+									<Menu.Item
+										key={plant.id}
+										name={plant.common_name}
+										active={this.state.plant === plant.common_name}
+										onClick={this.handleResultSelect} >
 											<Item.Header>{plant.common_name}</Item.Header>
 											<Item.Meta>{plant.scientific_name}</Item.Meta>
-										</Item.Content>
 									</Menu.Item>
 									)}
 								</Menu>

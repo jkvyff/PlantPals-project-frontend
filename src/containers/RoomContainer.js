@@ -14,7 +14,7 @@ class RoomContainer extends Component {
 				<h1>Your Plant Rooms</h1>
 				<Card.Group itemsPerRow={3}>
 					{this.props.rooms && this.props.rooms.map(room => {
-						return <Room key={room.id} room={room} handleClick={this.props.handleClick} />
+						return <Room key={room.id} room={room} handleClick={this.props.handleClick} handleDeleteRoom={this.props.handleDeleteRoom} getToken={this.props.getToken} />
 					})}
 					<Card color="green" className="new" onClick={this.handleClick}>
 						<Card.Content ><br /><br /><br /><br />

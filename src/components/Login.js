@@ -19,7 +19,7 @@ class Login extends Component {
         this.password = React.createRef()
 
         if (this.getToken()) {
-          
+
         }
     }
 
@@ -70,8 +70,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="page-login">
-                <br></br>
+            <div className="page-login"><br />
                 <div className="ui centered grid container">
                     <div className="nine wide column">
                         <div className="ui warning message">
@@ -100,7 +99,7 @@ class Login extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><br />
             </div>
         )
     }

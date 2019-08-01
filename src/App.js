@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { API_ROOT } from './constants';
-
+import { API_ROOT, API_ROOM } from './constants';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 import HomeContainer from './containers/HomeContainer'
@@ -12,7 +11,7 @@ import Footer from './components/Footer'
 class App extends Component {
 
 	state = {
-		user: {}
+		user: ""
 	}
 
 	logout = event => {
@@ -29,7 +28,7 @@ class App extends Component {
 	saveToken(jwt) {
 		localStorage.setItem('jwt', jwt)
 	}
-	  
+
 	getProfile = () => {
 		let token = this.getToken()
 		if (token) {
@@ -71,18 +70,48 @@ class App extends Component {
 		})
 	}
 
+	handleCreateRoom = room => {
+		console.log("hello",room, this.state.user.rooms)
+	}
+
+	handleDeleteRoom = room_id => {
+		const token = this.getToken();
+		fetch(`${API_ROOM}/${room_id}`, {
+			method: 'DELETE',
+			headers: {
+				'Authorization': 'Bearer ' + token
+			}
+		})
+		.then(res => res.json())
+		.then(json => this.setState(prevState => ({
+			...prevState,
+			user: {
+				...prevState.user,
+				rooms: prevState.user.rooms.filter(room =>
+					{return room.id !== room_id})
+			}
+		})))
+		.catch(err => console.log(err))
+	}
+
 	render() {
 		return (
 			<Router>
 				<div className="App">
 					<NavBar user={this.state.user} getProfile={this.getProfile} onLogout={this.logout} />
-					<Route exact path='/' render={(props) => 
-						<HomeContainer {...props} {...this.state} getToken={this.getToken} getProfile={this.getProfile} />} 
+					<Route exact path='/' render={(props) =>
+						<HomeContainer {...props} {...this.state}
+							getToken={this.getToken}
+							getProfile={this.getProfile}
+							handleCreateRoom={this.handleCreateRoom}
+							handleDeleteRoom={this.handleDeleteRoom} />}
 					/>
-					<Route exact path="/login" render={ (props) => 
-						<Login {...props} onLogin={this.getProfile} onLogout={this.logout}/>} 
+					<Route exact path="/login" render={ (props) =>
+						<Login {...props}
+							onLogin={this.getProfile}
+							onLogout={this.logout}/>}
 					/>
-					<Route path='/signup' render={(props) => <SignUp
+					<Route path='/signup' render={ (props) => <SignUp
 						{...props} onSignUp={this.getSignUp} />}
 					/>
 					<Footer />
