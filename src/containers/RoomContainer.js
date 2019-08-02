@@ -10,7 +10,7 @@ class RoomContainer extends Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{minWidth: '85vw'}}>
 				<h1>Your Plant Rooms</h1>
 				<Card.Group itemsPerRow={3}>
 					{this.props.rooms && this.props.rooms.map(room => {
@@ -26,7 +26,7 @@ class RoomContainer extends Component {
 						<Card.Content ><br /><br /><br /><br />
 							<Card.Header>
 								Click Me<br />
-								to add a new Room
+								to add a new Room<br /><br /><br /><br />
 							</Card.Header>
 						</Card.Content>
 					</Card>

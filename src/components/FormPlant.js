@@ -19,8 +19,7 @@ class FormPlant extends Component {
 	}
 
 	fillFormFromProps = (plant) => {
-				console.log("trying to fill form")
-				const { common_name, scientific_name, humidity_pref, id, light_pref, light_tolerance, temp_f, temp_tolerance, difficulty, toxic} = plant
+				const { common_name, scientific_name, humidity_pref, light_pref, light_tolerance, temp_f, temp_tolerance, difficulty, toxic} = plant
 				this.setState({
 					commonName: common_name,
 					scientificName: scientific_name,
@@ -31,7 +30,7 @@ class FormPlant extends Component {
 					lightTol: light_tolerance,
 					difficulty: difficulty,
 					toxic: toxic,
-				}, () => console.log(this.state.commonName))
+				})
 	}
 
 	handleChange = ev => {

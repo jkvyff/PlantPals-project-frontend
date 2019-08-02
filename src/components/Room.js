@@ -15,7 +15,7 @@ class Room extends Component {
 	render() {
 		const { humidity, light, name, pet_access, room_plants, temp_F } = this.props.room
 		return (
-			<Card color="green" onClick={this.handleClick}>
+			<Card color="green" style={{ minWidth: 230 }} onClick={this.handleClick}>
 				<Card.Content>
 					<Button basic onClick={this.handleDelete} className="mini right floated icon" color='red'><Icon name='x'/></Button>
 				</Card.Content>

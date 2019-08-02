@@ -11,7 +11,7 @@ class Plant extends Component {
 		const { nickname, notes, watering_delay_days, plant } = this.props.plant
 		const { common_name, scientific_name, difficulty, toxic } = plant
 		return (
-		<Card color="blue" onClick={this.handleClick}>
+		<Card color="blue" style={{ minHeight: 230 }} onClick={this.handleClick}>
 			<Card.Content>
 				<Card.Header>{nickname}</Card.Header>
 				<Card.Meta>{scientific_name}</Card.Meta>

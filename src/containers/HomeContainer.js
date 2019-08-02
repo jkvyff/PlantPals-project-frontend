@@ -75,7 +75,7 @@ class HomeContainer extends Component {
 			}
 		})
 		.then(res => res.json())
-		.then(plant => this.setState({results: [plant], plant: plant.common_name}))
+		.then(plant => plant ? this.setState({results: [plant], plant: plant.common_name}) : console.log("No Plant to recommend"))
 	}
 
 	render() {
@@ -86,7 +86,7 @@ class HomeContainer extends Component {
 						<div className="four wide column">
 							<Profile user={this.props.user} handleClick={this.handleClickProfile} handleSelfRate={this.props.handleSelfRate} />
 						</div>
-						<div className="twelve wide column">
+						<div className="twelve wide column" >
 							<PlantContainer
 								room={this.state.selected}
 								handleClick={this.handleClick} />
