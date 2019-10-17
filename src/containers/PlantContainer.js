@@ -13,7 +13,7 @@ class PlantContainer extends Component {
 							return <Plant key={plant.id} plant={plant} />
 						})}
 					</Card.Group>
-				: <h3>Select a room to see it's plants.</h3>}
+				: <h3>Select a room to see its plants.</h3>}
 			</div>
 		)
 	}

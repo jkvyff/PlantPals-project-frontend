@@ -117,9 +117,9 @@ class SignUp extends Component {
                             <div className="ui warning message">
                                 <div className="content">
                                     <div className="header">
-                                        Signup!
+                                        Sign up!
                                         </div>
-                                    <p>Please Sign Up To Find a new Plant Pal!</p>
+                                    <p>Please sign up to find a new Plant Pal!</p>
                                 </div>
                             </div>
                             <div className="content">
