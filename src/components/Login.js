@@ -69,37 +69,38 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="page-login"><br />
-                <div className="ui centered grid container">
-                    <div className="nine wide column">
-                        <div className="ui warning message">
-                            <div className="content">
-	                            <div className="header">Plant Pals</div>
-                                <p>Please Login to find a new plant pal!</p>
+            <div className="login"><br />
+                <div className="page-login"><br />
+                    <div className="ui centered grid container">
+                        <div className="nine wide column">
+                            <div className="ui warning message">
+                                <div className="content">
+    	                            <div className="header">Plant Pals</div>
+                                    <p>Please Login to find a new plant pal!</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="content">
-                            <form className="ui form" method="POST">
-                                <div className="field">
-                                    <label>User</label>
-                                    <input type="text" name="user" placeholder="User" ref={this.username}></input>
+                            <div className="content">
+                                <form className="ui form" method="POST">
+                                    <div className="field">
+                                        <label>User</label>
+                                        <input type="text" name="user" placeholder="User" ref={this.username}></input>
+                                    </div>
+                                    <div className="field">
+                                        <label>Password</label>
+                                        <input type="password" name="pass" placeholder="Password" ref={this.password}></input>
+                                    </div>
+                                    <button className="ui fluid large submit button" type="submit" onClick={this.login}>
+                                        Login
+                                    </button>
+                                </form>
+                                <div className="ui error message">
+                                    <center>New User?  Sign up <NavLink to="/signup">Here!</NavLink></center>
                                 </div>
-                                <div className="field">
-                                    <label>Password</label>
-                                    <input type="password" name="pass" placeholder="Password" ref={this.password}></input>
-                                </div>
-                                <button className="ui fluid large submit button" type="submit" onClick={this.login}>
-                                    Login
-                                </button>
-                            </form>
-                            <div className="ui error message">
-                                <center>New User?  Sign up <NavLink to="/signup">Here!</NavLink></center>
                             </div>
                         </div>
-                    </div>
-                </div><br />
-                <div className="buffer-log"></div>
+                    </div><br />
+                </div>
             </div>
         )
     }
