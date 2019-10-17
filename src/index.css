@@ -32,7 +32,6 @@ div.ui.borderless.main.menu {
   display: block;
   position: relative;
   padding-bottom: 100px;
+  padding-left: 5vw;
+  padding-right: 16vw;
 }
-
-
-

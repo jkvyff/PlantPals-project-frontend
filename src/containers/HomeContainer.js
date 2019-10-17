@@ -111,10 +111,11 @@ class HomeContainer extends Component {
 						</div>
 						:
 						<div className="row">
-						<FormPlant
-							selected={this.state.selected}
-							resultPlant={this.foundPlant()}
-							getToken={this.props.getToken} />
+							<FormPlant
+								selected={this.state.selected}
+								resultPlant={this.foundPlant()}
+								getToken={this.props.getToken}
+								handleCreatePlant={this.props.handleCreatePlant} />
 							<div className="two wide column"></div>
 							<div>
 								<h2><b>Recommend a plant</b></h2>

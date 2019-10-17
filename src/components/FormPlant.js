@@ -19,18 +19,18 @@ class FormPlant extends Component {
 	}
 
 	fillFormFromProps = (plant) => {
-				const { common_name, scientific_name, humidity_pref, light_pref, light_tolerance, temp_f, temp_tolerance, difficulty, toxic} = plant
-				this.setState({
-					commonName: common_name,
-					scientificName: scientific_name,
-					temp: temp_f,
-					tempTol: temp_tolerance,
-					humid: humidity_pref,
-					light: light_pref,
-					lightTol: light_tolerance,
-					difficulty: difficulty,
-					toxic: toxic,
-				})
+		const {common_name, scientific_name, humidity_pref, light_pref, light_tolerance, temp_f, temp_tolerance, difficulty, toxic} = plant
+		this.setState({
+			commonName: common_name,
+			scientificName: scientific_name,
+			temp: temp_f,
+			tempTol: temp_tolerance,
+			humid: humidity_pref,
+			light: light_pref,
+			lightTol: light_tolerance,
+			difficulty: difficulty,
+			toxic: toxic,
+		})
 	}
 
 	handleChange = ev => {
@@ -39,17 +39,17 @@ class FormPlant extends Component {
 		})
 	}
 
-  handleRating = (ev, {rating}) => {
+	handleRating = (ev, {rating}) => {
 		this.setState({
 			difficulty: rating
 		})
-  }
+	}
 
-  toggleCheckbox = ev => {
+	toggleCheckbox = ev => {
 		this.setState(prevState => (
-  		{ toxic: !prevState.toxic }
-  	));
-  }
+			{ toxic: !prevState.toxic }
+		));
+	}
 
 	createPlant = () => {
 		const { commonName, scientificName, temp, tempTol, humid, light, lightTol, difficulty, toxic } = this.state
@@ -102,7 +102,7 @@ class FormPlant extends Component {
 			body: payload
 		 })
 		.then(res => res.json())
-		.then(json => console.log(json))
+		.then(json => this.props.handleCreatePlant(json))
 	}
 
   handleSubmit = ev => {

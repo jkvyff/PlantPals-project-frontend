@@ -66,6 +66,25 @@ class App extends Component {
 		})
 	}
 
+	handleCreatePlant = ({room_plant}) => {
+		const {room} = room_plant
+		let i
+		for (i in this.state.user.rooms) {
+			if (this.state.user.rooms[i].id === room.id) break
+		}
+		let newState = {
+			...this.state,
+			user: {
+				...this.state.user,
+				rooms: [...this.state.user.rooms]
+			}
+		}
+		let newRoom = newState.user.rooms[i]
+		newRoom.room_plants.push(room_plant)
+		newState.user.rooms[i] = newRoom
+		this.setState(prevState => ({user: newState.user}));
+	}
+
 	handleCreateRoom = room => {
 		this.setState(prevState => ({
 			...prevState,
@@ -123,7 +142,8 @@ class App extends Component {
 							getProfile={this.getProfile}
 							handleCreateRoom={this.handleCreateRoom}
 							handleDeleteRoom={this.handleDeleteRoom}
-							handleSelfRate={this.handleSelfRate} />}
+							handleSelfRate={this.handleSelfRate}
+							handleCreatePlant={this.handleCreatePlant} />}
 					/>
 					<Route exact path="/login" render={ (props) =>
 						<Login {...props}

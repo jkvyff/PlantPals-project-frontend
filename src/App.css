@@ -1,11 +1,8 @@
+html, body {padding:0; margin:0; height:100%;}
+.footer{position: relative; top: 0; left: 0; right: 0;}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
 }
 
 .App-header {
@@ -23,11 +20,10 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buffer-log {
+  min-height: 190px;
+}
+
+.buffer-sign {
+  min-height: 100px;
 }

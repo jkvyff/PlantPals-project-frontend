@@ -17,7 +17,6 @@ class Login extends Component {
         super()
         this.username = React.createRef()
         this.password = React.createRef()
-
         if (this.getToken()) {
 
         }
@@ -100,6 +99,7 @@ class Login extends Component {
                         </div>
                     </div>
                 </div><br />
+                <div className="buffer-log"></div>
             </div>
         )
     }

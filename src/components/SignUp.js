@@ -164,6 +164,7 @@ class SignUp extends Component {
                         </div>
                     </div>
                 </div><br />
+                <div className="buffer-sign"></div>
             </div>
         )
     }

@@ -11,9 +11,10 @@ class Footer extends Component {
 					<div className="ui center aligned container">
 						<img src={Logo} className="ui centered mini image" alt="small plant"/>
 						<div className="ui horizontal inverted small divided link list">
-							<p className="item" >Contact Us</p>
-							<p className="item" >Terms and Conditions</p>
-							<p className="item" >Privacy Policy</p>
+							<p className="item" >Refer any questions or bugs to my:</p>
+							<a href="https://twitter.com/JKVyff" target="_blank" rel="noopener noreferrer">
+								<p>Twitter</p>
+							</a>
 						</div>
 					</div>
 				</div>
